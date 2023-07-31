@@ -1,0 +1,42 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Georgian:wght@300;400;500;700;800;900&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.flex{
+  display: flex;
+  width: 100vw;
+}
+
+.activeMenuItem{
+  background-color: #ce151b;
+
+}
+
+.appbar-width{
+  width: calc(100% - 240px);
+}
+.landingPic{
+  min-width: 100vw;
+  margin-top: 20px;
+ 
+  height: 80vh;
+  transform: translateX(-35vw);
+  transform: translateY(0vh);
+
+}
