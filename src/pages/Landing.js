@@ -34,7 +34,7 @@ function LandingPage() {
     ]
 
     return ( 
-        <Box>
+        <Box sx={{width:"100vw", overflow:"hidden"}}>
             <AppBar color="secondary" elevation={4} >
                 <Container>
                     <Toolbar sx={{display:"flex"}}>
@@ -50,7 +50,7 @@ function LandingPage() {
                 </Container>
             </AppBar>
 
-            <Box sx={{pt:20, height:"100vh"}}>
+            <Box sx={{pt:20}}>
                 <Typography variant="h4" fontSize={30} fontWeight={700}  sx={{
                     textAlign:"center",
                     display:{
@@ -71,10 +71,10 @@ function LandingPage() {
                     <Button variant="contained" sx={{mx:"auto"}} onClick={()=> navigate(links.signup)}>Sign Up now</Button>
                 </Box>
 
-               <img src={homepic} alt="landing page pic" className={window.innerWidth > 600 ? "landingPic": ""}/>
+               <img src={homepic} alt="landing page pic" className={"landingPic"}/>
                 
             </Box>
-            <Box sx={{ height:"100vh"}} >
+            <Box  >
 
                 <Container>
                 <Typography variant="h4" fontSize={30} fontWeight={700}  sx={{

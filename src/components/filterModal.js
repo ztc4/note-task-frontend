@@ -1,4 +1,4 @@
-import { Box, Checkbox, FilledInput, FormControlLabel, FormGroup, FormLabel, Modal, Radio, RadioGroup } from "@mui/material";
+import { Box, Button, Checkbox, FilledInput, FormControlLabel, FormGroup, FormLabel, Grid, Modal, Radio, RadioGroup } from "@mui/material";
 
 import React, { useContext } from "react";
 import { NoteContext } from "../Context/NoteContext";
@@ -16,6 +16,21 @@ const style = {
    
     boxShadow: 24,
     p: 4,
+    overflow: "scroll"
+   
+  }
+  const style2 = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: "100%",
+    height:"100%",
+    bgcolor: 'background.paper',
+   
+    boxShadow: 24,
+    p: 4,
+    overflow: "scroll"
    
   }
 function FilterModal({open,handleClose}) {
@@ -66,7 +81,7 @@ function FilterModal({open,handleClose}) {
         <Modal
                 open={open}
                 onClose={handleClose}>
-                <Box style={style} elevation={6} sx={{bgcolor:"white", borderRadius:2, pl:2}}>
+                <Box style={window.innerWidth > 600 ? style :style2} elevation={6} sx={{bgcolor:"white", borderRadius:2, pl:2}}>
                    <Box textAlign={"center"}> 
                     <FilledInput type="search" startAdornment={      
                         <Search sx={{pt:2, mr:1, color:"main"}}/> 
@@ -86,45 +101,51 @@ function FilterModal({open,handleClose}) {
                         disableUnderline={true}
                         />
                     </Box>
-                    <Box
-                    sx={{display:"flex", my:4}}
-                    >
-                        <Box sx={{mr:4}}>
-                            <FormLabel>Completed</FormLabel>
-                            <RadioGroup sx={{display:"flex"}} value={filter.completion} onClick={changeCompletion}>
-                                <FormControlLabel value="true" control={<Radio/>} label="true"/>
-                                <FormControlLabel value="false" control={<Radio/>} label="false"/>
-                            </RadioGroup>
-                        </Box>
-                        <Box>
-                            <FormLabel>Sorting by Time</FormLabel>
-                            <RadioGroup value={filter.sortBy} onClick={changeSort}>
-                                <FormControlLabel value={"closest"}  id="sortByClosest" control={<Radio/>} label="Sort by Closest"/>
-                                <FormControlLabel value={"farthest"} control={<Radio/>} id="sortByFarthest" label="Sort by Farthest"/>
-                            </RadioGroup>
-                        </Box>
+                    <Grid container sx={{width:"100%"}}>
+
                         
-                    </Box>
-                    <Box sx={{display:"flex"}}>
-                        <Box sx={{mr:4}}>
-                        <FormLabel>Sort Alphabetically</FormLabel>
-                            <RadioGroup value={filter.alphabetical} onClick={changeAlphabet}>
-                                <FormControlLabel value={"true"}  id="alphabetical" control={<Radio/>} label="A - Z"/>
-                                <FormControlLabel value={"false"} control={<Radio/>} id="reverseAlphabetical" label="Z - A"/>
-                            </RadioGroup>    
-                        </Box>
-                        <Box sx={{mr:4}}>
-                        <FormLabel>Note Type</FormLabel>
-                        <FormGroup>
-                            <FormControlLabel    control={<Checkbox checked={filter.money} id="money" onChange={noteCategory} />} label="Money" />
-                            <FormControlLabel control={<Checkbox  checked={filter.todos} id="todos"  onChange={noteCategory}/>} label="Todos" />
-                            <FormControlLabel control={<Checkbox checked={filter.reminder} id="reminder"  onChange={noteCategory}/>} label="Reminder" />
-                            <FormControlLabel control={<Checkbox checked={filter.work} id="work" onChange={noteCategory}/>} label="Work" />
-                        </FormGroup>
+ 
+                            <Grid item sx={{mr:4}} xs={12} sm={6}  md={3}>
+                                <FormLabel>Completed</FormLabel>
+                                <RadioGroup sx={{display:"flex"}} value={filter.completion} onClick={changeCompletion}>
+                                    <FormControlLabel value="true" control={<Radio/>} label="true"/>
+                                    <FormControlLabel value="false" control={<Radio/>} label="false"/>
+                                </RadioGroup>
+                            </Grid>
+                            <Grid item sx={{mr:4}} xs={12} sm={6}  md={3}>
+                                <FormLabel>Sorting by Time</FormLabel>
+                                <RadioGroup value={filter.sortBy} onClick={changeSort}>
+                                    <FormControlLabel value={"closest"}  id="sortByClosest" control={<Radio/>} label="Sort by Closest"/>
+                                    <FormControlLabel value={"farthest"} control={<Radio/>} id="sortByFarthest" label="Sort by Farthest"/>
+                                </RadioGroup>
+                            </Grid>
+                            
+                    
+                        
+                        
+                            <Grid item 
+                        xs={12} sm={6}  md={3}>
+                                <FormLabel>Sort Alphabetically</FormLabel>
+                                    <RadioGroup value={filter.alphabetical} onClick={changeAlphabet}>
+                                        <FormControlLabel value={"true"}  id="alphabetical" control={<Radio/>} label="A - Z"/>
+                                        <FormControlLabel value={"false"} control={<Radio/>} id="reverseAlphabetical" label="Z - A"/>
+                                    </RadioGroup>    
+                            </Grid>
+                            <Grid item sx={{display:"flex", flexDirection:"column"}}
+                        xs={12} sm={6}  md={4}>
+                            <FormLabel>Note Type</FormLabel>
+                            <FormGroup>
+                                <FormControlLabel    control={<Checkbox checked={filter.money} id="money" onChange={noteCategory} />} label="Money" />
+                                <FormControlLabel control={<Checkbox  checked={filter.todos} id="todos"  onChange={noteCategory}/>} label="Todos" />
+                                <FormControlLabel control={<Checkbox checked={filter.reminder} id="reminder"  onChange={noteCategory}/>} label="Reminder" />
+                                <FormControlLabel control={<Checkbox checked={filter.work} id="work" onChange={noteCategory}/>} label="Work" />
+                            </FormGroup>
 
 
-                        </Box>
-                    </Box>
+                            </Grid>
+                        </Grid>
+                        { window.innerWidth <600 && <Button variant="contained" sx={{width:"100%"}}  onClick={handleClose}>Close</Button>}
+                    
                 </Box>
 
             </Modal>

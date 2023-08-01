@@ -32,11 +32,26 @@ code {
   width: calc(100% - 240px);
 }
 .landingPic{
-  min-width: 100vw;
+  min-width: 40vw;
   margin-top: 20px;
  
-  height: 80vh;
-  transform: translateX(-35vw);
+  height: 40vh;
+  transform: translateX(0vw);
   transform: translateY(0vh);
 
 }
+
+@media screen and (min-width: 600px){
+  .landingPic{
+    min-width: 100vw;
+    margin-top: 20px;
+   
+    height: 80vh;
+    transform: translateX(-35vw);
+    transform: translateY(0vh);
+  
+  }
+
+
+
+} 

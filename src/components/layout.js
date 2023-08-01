@@ -107,7 +107,7 @@ function Layout({children}) {
     
     
     return ( 
-        <div className={window.innerWidth > 600 && "flex"}>
+        <div className={window.innerWidth > 600 && "flex"} sx={{width:"100vw"}}>
             <AppBar elevation={0} sx={(window.innerWidth > 600)?{width: `calc(100% - 240px)`, display:"flex"}:{width:"100%"}}>
                 <Toolbar sx={{display:"flex"}}>
                     {/* <Typography>

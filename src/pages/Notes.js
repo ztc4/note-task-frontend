@@ -80,7 +80,7 @@ function Notes() {
 
 
     return ( 
-        <Box  sx={ window.innerWidth < 600 ? {width:"100vw"}:{ width:"80vw", height:"90vh",pl:12}} >
+        <Box  sx={ window.innerWidth < 600 ? {width:"100vw", minHeight:"100vw"}:{ width:"80vw", height:"90vh",pl:12}} >
 
             
             <Grid container spacing={2}>
