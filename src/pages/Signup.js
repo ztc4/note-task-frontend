@@ -5,11 +5,21 @@ import {  ArrowRightAltOutlined} from "@mui/icons-material";
 import { useNavigate } from "react-router";
 
 function Signup() {
+
+    //setting state for application
     const [form, setForm]= React.useState({email:"", password:"",firstName:"", lastName:""})
     const [error,setError] = React.useState(false)
     const [page,setPage] = React.useState(1)
+
+    //navigation
     const navigate = useNavigate()
-    
+
+    //Demo renavigate to notes
+    React.useEffect(()=>{
+        navigate("/notes")
+    },[])
+
+    //event handlers
 
     function handleChange(e){
         const {id} = e.target
@@ -19,54 +29,7 @@ function Signup() {
         }))
     }
 
-    let email = (<Box textAlign={"center"}><TextField label="Email" variant="filled" sx={window.innerWidth> 500 ? {width:400, mb:"20px", mx:"auto"}:{width:"100%", mb:"20px"}} fullWidth id="email"
-    onChange={handleChange}
-    value={form.email}
-    error={error}
-    required
-    /></Box>)
-    let password = (<Box textAlign={"center"}>
-    <TextField
-    label="Password"
-    variant="filled"
-    type="password"
-    
-    sx={window.innerWidth> 500 ? {width:400, mb:"10px"}:{width:"100%", mb:"10px"}}
-    id="password"
-    onChange={handleChange}
-    value={form.password}
-    error={error}
-    required
-    />
-    </Box>)
-    let submitButton = (<Box textAlign={"center"}>
-    <Button 
-    onClick={submit}
-    type="submit" 
-    variant="contained"
-    fillWidth
-    sx={window.innerWidth> 500 ? {width:400}:{width:"100%"}}
-    >
-   Sign Up
-    </Button>
-    </Box>)
-        let firstName = (<Box textAlign={"center"}><TextField label="First Name" variant="filled" sx={window.innerWidth> 500 ? {width:400, mb:"20px", mx:"auto"}:{width:"100%", mb:"20px"}} fullWidth id="firstName"
-        onChange={handleChange}
-        value={form.firstName}
-        error={error}
-        required
-        /></Box>)
-        let lastName = (<Box textAlign={"center"}><TextField label="Last Name" variant="filled" sx={window.innerWidth> 500 ? {width:400, mb:"20px", mx:"auto"}:{width:"100%", mb:"20px"}} fullWidth id="lastName"
-        onChange={handleChange}
-        value={form.lastName}
-        error={error}
-        required
-        /></Box>)
-
-    let submitArray = [[firstName,lastName],email,[password,submitButton]]
-    
     function submit(e){
-
         e.preventDefault()
         fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/signup`, {
         method: "POST",
@@ -83,6 +46,72 @@ function Signup() {
         .catch(setError(true))
         .then(()=> navigate("/notes"))
     }
+
+
+    //Creating of the many input components
+
+
+        //Email
+        let email = (
+        <Box textAlign={"center"}><TextField label="Email" variant="filled" sx={window.innerWidth> 500 ? {width:400, mb:"20px", mx:"auto"}:{width:"100%", mb:"20px"}} fullWidth id="email"
+        onChange={handleChange}
+        value={form.email}
+        error={error}
+        required
+        /></Box>)
+        let password = (<Box textAlign={"center"}>
+        <TextField
+        label="Password"
+        variant="filled"
+        type="password"
+        
+        sx={window.innerWidth> 500 ? {width:400, mb:"10px"}:{width:"100%", mb:"10px"}}
+        id="password"
+        onChange={handleChange}
+        value={form.password}
+        error={error}
+        required
+        />
+        </Box>)
+
+        //Submit button
+
+        let submitButton = (<Box textAlign={"center"}>
+        <Button 
+        onClick={submit}
+        type="submit" 
+        variant="contained"
+        fillWidth
+        sx={window.innerWidth> 500 ? {width:400}:{width:"100%"}}
+        >
+    Sign Up
+        </Button>
+        </Box>)
+
+        //First Name
+
+        let firstName = (<Box textAlign={"center"}><TextField label="First Name" variant="filled" sx={window.innerWidth> 500 ? {width:400, mb:"20px", mx:"auto"}:{width:"100%", mb:"20px"}} fullWidth id="firstName"
+            onChange={handleChange}
+            value={form.firstName}
+            error={error}
+            required
+            /></Box>)
+
+
+        //Last Name
+
+        let lastName = (<Box textAlign={"center"}><TextField label="Last Name" variant="filled" sx={window.innerWidth> 500 ? {width:400, mb:"20px", mx:"auto"}:{width:"100%", mb:"20px"}} fullWidth id="lastName"
+            onChange={handleChange}
+            value={form.lastName}
+            error={error}
+            required
+            /></Box>)
+
+
+
+    let submitArray = [[firstName,lastName],email,[password,submitButton]]
+    
+
     return ( 
         
             <Container  sx={{display:"flex", flexDirection:"column",pt:20}} >

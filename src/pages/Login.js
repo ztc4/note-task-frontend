@@ -1,5 +1,5 @@
 import { Alert, Box, Button, Container, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import testSvg from "../png/logo-no-background.png"
 import { useNavigate } from "react-router";
 
@@ -7,12 +7,13 @@ import { useNavigate } from "react-router";
 function Login() {
 
 
+    //state
     const navigate = useNavigate()
     const [form, setForm]= React.useState({email:"", password:""})
     const [error,setError] = React.useState(false)
     
     
-
+    //events
     function handleChange(e){
         const {id,value} = e.target
         setForm(current=>({
@@ -22,33 +23,42 @@ function Login() {
     }
     function submit(e){
 
+      
+
         e.preventDefault()
+        navigate("/notes")
         
-       fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/login`, {
-        method: "POST",
+    //    fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/login`, {
+    //     method: "POST",
         
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-        body: JSON.stringify({email: form.email.toLowerCase(), password: form.password}),
-        })
-        .then(res => res.json())
-        .then(res => {
-            if(res.error){
-                setError(res.error)
-                throw new Error("Couldn't login")
-            };
-            document.cookie = `jwt=${res.token}`
-            console.log(document.cookie)
-        })
-        .then(()=> navigate("/notes"))
-        .catch(err=> {
+    //     headers: {
+    //         Accept: "application/json, text/plain, */*",
+    //         "Content-Type": "application/json",
+    //       },
+    //     body: JSON.stringify({email: form.email.toLowerCase(), password: form.password}),
+    //     })
+    //     .then(res => res.json())
+    //     .then(res => {
+    //         if(res.error){
+    //             setError(res.error)
+    //             throw new Error("Couldn't login")
+    //         };
+    //         document.cookie = `jwt=${res.token}`
+    //         console.log(document.cookie)
+    //     })
+    //     .then(()=> navigate("/notes"))
+    //     .catch(err=> {
         
-            alert(err)
-            // setError(err)
-        })
+    //         alert(err)
+    //         // setError(err)
+    //     })
     }
+    React.useEffect(()=>{
+        navigate("/notes")
+
+    },[])
+
+
     return ( 
         
             <Container  sx={{display:"flex", flexDirection:"column",pt:15}} >

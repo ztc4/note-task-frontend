@@ -10,16 +10,37 @@ import FilterModal from "./filterModal";
 
 
 function Layout({children}) {
+    //State
     const {filter,setFilter} = React.useContext(NoteContext)
     const navigate = useNavigate();
     const location = useLocation().pathname
     // console.log(location)
     const drawerWidth = 240
+    const[menuOpen, setMenu] = React.useState(false)
     const [open, setOpen] = React.useState(false);
+
+    //State Change Events
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    function openMenu(e){
+        if(menuOpen){
+            setMenu(false)
+            console.log("menu close")
+        }
+        else{
+            setMenu(true)
+            console.log("menu opened")
+        }
+    }
+    function closeMenu(e){
+        if(menuOpen){
+            openMenu(e)}
+    }
 
-    const[menuOpen, setMenu] = React.useState(false)
+    
+
+
+    //Items in navigator
     const menuItems = [
         {
             text:"My notes",
@@ -44,61 +65,53 @@ function Layout({children}) {
 
         }
     ]
-    function openMenu(e){
-        if(menuOpen){
-            setMenu(false)
-            console.log("menu close")
-        }
-        else{
-            setMenu(true)
-            console.log("menu opened")
-        }
-    }
-    function closeMenu(e){
-        if(menuOpen){
-            openMenu(e)}
-    }
+
+
+
+    
     function logout(){
-        fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/logout`, {
-            method: "POST",
+        // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/logout`, {
+        //     method: "POST",
             
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${getCookie('jwt')}`
-                    },
-            })
-            .then((res)=>console.log(res))
-            .then(()=> document.cookie = ``)
-            .then(()=> navigate("/"))
+        //     headers: {
+        //         Accept: "application/json, text/plain, */*",
+        //         "Content-Type": "application/json",
+        //         Authorization: `Bearer ${getCookie('jwt')}`
+        //             },
+        //     })
+        //     .then((res)=>console.log(res))
+        //     .then(()=> document.cookie = ``)
+        //     .then(()=> navigate("/"))
+        navigate("/")
         }
+
+
     React.useEffect(()=>{
 
-        try{fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/checklogin`, {
-            method: "POST",
+        
+            // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/checklogin`, {
+            // method: "POST",
             
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${getCookie('jwt')}`
-                    },
-            })
-            .then((res)=>res)
-            .then(res => {
-                if(res.error){
+            // headers: {
+            //     Accept: "application/json, text/plain, */*",
+            //     "Content-Type": "application/json",
+            //     Authorization: `Bearer ${getCookie('jwt')}`
+            //         },
+            // })
+            // .then((res)=>res)
+            // .then(res => {
+            //     if(res.error){
                    
-                    throw new Error("Couldn't login")
-                };
-                console.log(res)
-                console.log(document.cookie)
-            })
-            .catch((e)=> alert(e))}
-            catch(e){
-                alert("Please login")
-            }
-
-         
+            //         throw new Error("Couldn't login")
+            //     };
+            //     console.log(res)
+            //     console.log(document.cookie)
+            // })
+            // .catch((e)=> alert(e))
+        
             
+                // alert("Please login")
+                 
 
     },[])
 

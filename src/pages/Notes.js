@@ -10,62 +10,57 @@ function Notes() {
     
     const {notes,setNotes,groupNotes,setGroupNotes,filter} = React.useContext(NoteContext)
 
-    let noteGroup;
+    let noteGroup = [];
     switch(filter.noteType){
         case "group": noteGroup = groupNotes ;break;
         case "personal": noteGroup = notes ;break
-        default: noteGroup = [...groupNotes,...notes];break
+        default: noteGroup = [...notes,...groupNotes];break
     }
+    console.log(10,noteGroup)
 
-    const sortedNotes = sortNotes(noteGroup, filter.search,
+    let sortedNotes = []
+    //filtered notes
+    if(noteGroup.length > 0)
+    {sortedNotes = sortNotes(noteGroup, filter.search,
         filter.completion,filter.alphabetical,
         filter.sortBy,filter.work,filter.todos, filter.reminder,filter.money)
+}
+
        
 
       
+    //ORIGINAL FETCH TO BACKEND
+        // function deleteTask(id){
+        //     console.log("deleting task")
+        //     fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/tasks/delete`,{
+        //         method: "DELETE",
+            
+        //         headers: {
+        //             Accept: "application/json, text/plain, */*",
+        //             "Content-Type": "application/json",
+        //             Authorization: `Bearer ${getCookie('jwt')}`
+        //         },
+        //         body: JSON.stringify({_id:id}),
+        //         })
+        //         .then(deleteNoteOutOfState(id))
+        //         .catch()
+                
+        // }
+        // function deleteGroupTask(id){
+        //     fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/delete`,{
+        //         method: "DELETE",
+            
+        //         headers: {
+        //             Accept: "application/json, text/plain, */*",
+        //             "Content-Type": "application/json",
+        //             Authorization: `Bearer ${getCookie('jwt')}`
+        //         },
+        //         body: JSON.stringify({_id: id, completion: true}),
+        //         }).then(
+        //             deleteGroupNoteOutOfState(id)
+        //         )
+        // }
 
-
-
-    
-
-    function deleteTask(id){
-        console.log("deleting task")
-        fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/tasks/delete`,{
-            method: "DELETE",
-        
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${getCookie('jwt')}`
-            },
-            body: JSON.stringify({_id:id}),
-            })
-            .then(deleteNoteOutOfState(id))
-            .catch()
-               
-    }
-    function deleteGroupTask(id){
-        fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/delete`,{
-            method: "DELETE",
-        
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${getCookie('jwt')}`
-            },
-            body: JSON.stringify({_id: id, completion: true}),
-            }).then(
-                deleteGroupNoteOutOfState(id)
-            )
-    }
-    // async function deleteNote(id){
-    //     await fetch(`https://localhost:8000/notes/` + id,{
-    //         method:"DELETE"
-    //     })
-    //     .then(()=>deleteNoteOutOfState(id))
-
-
-    // }
     function deleteNoteOutOfState(id){
        
         setNotes(current => current.filter(current=> current._id !== id))
@@ -76,7 +71,9 @@ function Notes() {
         setGroupNotes(current => current.filter(current=> current._id !== id))
 
     }
-    console.log(sortedNotes)
+    console.log(3,sortedNotes)
+    console.log(5,notes)
+
 
 
     return ( 
@@ -84,11 +81,11 @@ function Notes() {
 
             
             <Grid container spacing={2}>
-                {sortedNotes.map(note=>(
-                        <Grid item xs={12} sm={6} margin={1} md={4}>
+                {sortedNotes &&  sortedNotes.map(note=>(
+                        <Grid item xs={12} sm={6} margin={1} md={4} key={note.title}>
                             
                             
-                            <NoteCard note={note} deleteTask={note.hasOwnProperty("owner") ? deleteTask : deleteGroupTask} group={false}/>
+                            <NoteCard note={note} deleteTask={note.hasOwnProperty("owner") ? deleteNoteOutOfState : deleteGroupNoteOutOfState} group={false}/>
                             
                             
                         </Grid>

@@ -85,21 +85,21 @@ const[createGroup,setCreateGroup] = React.useState({
 const [category,setCategory]= React.useState("todos")
 React.useEffect(()=>{
   try{
-    console.log(getCookie("jwt"))
-  fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/tasks/get`,{
-        method: "GET", 
-        headers:{
-            Authorization: `Bearer ${getCookie("jwt")}`
-        }
-    }).then(res => res.json())
-    .then((res)=> {
-        if(res.error){
-            console.log(res.error)
-           throw new Response("Couldn't get task")
-        }
-        console.log(res)
-        return setNotes(res)
-    })
+  
+  // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/tasks/get`,{
+  //       method: "GET", 
+  //       headers:{
+  //           Authorization: `Bearer ${getCookie("jwt")}`
+  //       }
+  //   }).then(res => res.json())
+  //   .then((res)=> {
+  //       if(res.error){
+  //           console.log(res.error)
+  //          throw new Response("Couldn't get task")
+  //       }
+  //       console.log(res)
+  //       return setNotes(res)
+  //   })
   
   }catch(e){
     console.log("couldnt get data")
@@ -107,19 +107,19 @@ React.useEffect(()=>{
     }
 
     try{
-      fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/get`, {
-            method: "GET",
+      // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/get`, {
+      //       method: "GET",
             
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${getCookie('jwt')}`
-            },
-            })
-            .then(res => res.json())
-            .then(res => setGroup(res))
-            console.table(groups)
-            console.log("the groups")
+      //       headers: {
+      //           Accept: "application/json, text/plain, */*",
+      //           "Content-Type": "application/json",
+      //           Authorization: `Bearer ${getCookie('jwt')}`
+      //       },
+      //       })
+      //       .then(res => res.json())
+      //       .then(res => setGroup(res))
+      //       console.table(groups)
+      //       console.log("the groups")
             
 
     }
@@ -128,20 +128,20 @@ React.useEffect(()=>{
 
     }
     try{
-      fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/getTask`,{
-        method: "GET", 
-        headers:{
-            Authorization: `Bearer ${getCookie('jwt')}`
-        }
-    })
-    .then(res => res.json())
-    .then((res)=> {
-        if(res.error){
-            console.log(res.error)
-           throw new Response("Couldn't get task")
-        }
-        return res
-    }).then(result=> setGroupNotes(result))
+    //   fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/getTask`,{
+    //     method: "GET", 
+    //     headers:{
+    //         Authorization: `Bearer ${getCookie('jwt')}`
+    //     }
+    // })
+    // .then(res => res.json())
+    // .then((res)=> {
+    //     if(res.error){
+    //         console.log(res.error)
+    //        throw new Response("Couldn't get task")
+    //     }
+    //     return res
+    // }).then(result=> setGroupNotes(result))
 
     }catch(e){
       console.log("couldnt get group data")

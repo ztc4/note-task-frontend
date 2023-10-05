@@ -51,7 +51,7 @@ class Notes{
 
     }
     setCompletedNotes(){
-        this.completed = this.notes.filter(
+        this.completed = this.filter(
             current=> current.completion === true
         )
         return this.completed
