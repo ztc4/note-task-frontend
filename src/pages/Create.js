@@ -48,30 +48,29 @@ function Create() {
 
     async function handleSubmit(event){
         event.preventDefault()
-        //    try{     console.log("submitting task")
-        //     fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/tasks/create`, {
-        //         method: "POST",
+           try{     console.log("submitting task")
+            fetch(`https://note-task-backend.onrender.com/tasks/create`, {
+                method: "POST",
                 
-        //         headers: {
-        //             Accept: "application/json, text/plain, */*",
-        //             "Content-Type": "application/json",
-        //             Authorization: `Bearer ${getCookie('jwt')}`
-        //         },
-        //         body: JSON.stringify({title:newNote.title, details: newNote.details, category: category, completion: newNote.completed, due: newNote.due, time:newNote.time, owner:"random"}),
-        //         })
-        //         .then(res=> res.json())
-        //         .then(res=> setNotes(current=>([
-        //             ...current,res
-        //         ])))
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie('jwt')}`
+                },
+                body: JSON.stringify({title:newNote.title, details: newNote.details, category: category, completion: newNote.completed, due: newNote.due, time:newNote.time, owner:"random"}),
+                })
+                .then(res=> res.json())
+                .then(res=> setNotes(current=>([
+                    ...current,res
+                ])))
                 
-        //         .then(()=> navigate("/notes"))
-        //         .catch(error=> console.log(error))
-        //         .catch(()=> navigate("/"))}
-        //         catch(e){
-        //             alert("Error trying to submit task... your most likely not logged in")
-        //             navigate("/login")
+                .then(()=> navigate("/notes"))
+                .catch(error=> console.log(error))
+                .catch(()=> navigate("/"))}
+                catch(e){
+                    alert("Error trying to submit task to send task!")
 
-        //         }
+                }
         setNotes(current=>([
             ...current,
             {title:newNote.title,
@@ -98,7 +97,7 @@ function Create() {
               if(newNote.group === ""){
                 throw new Error("No group selected")
               }
-                fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/createTask`,{
+                fetch(`https://note-task-backend.onrender.com/group/createTask`,{
                 method: "POST",
                 headers:{
                     Accept: "application/json, text/plain, */*",

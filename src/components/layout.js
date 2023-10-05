@@ -11,7 +11,7 @@ import FilterModal from "./filterModal";
 
 function Layout({children}) {
     //State
-    const {filter,setFilter} = React.useContext(NoteContext)
+    const {filter,setFilter,setLoggedIn,loggedIn} = React.useContext(NoteContext)
     const navigate = useNavigate();
     const location = useLocation().pathname
     // console.log(location)
@@ -70,47 +70,51 @@ function Layout({children}) {
 
     
     function logout(){
-        // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/logout`, {
-        //     method: "POST",
+        fetch(`https://note-task-backend.onrender.com/user/logout`, {
+            method: "POST",
             
-        //     headers: {
-        //         Accept: "application/json, text/plain, */*",
-        //         "Content-Type": "application/json",
-        //         Authorization: `Bearer ${getCookie('jwt')}`
-        //             },
-        //     })
-        //     .then((res)=>console.log(res))
-        //     .then(()=> document.cookie = ``)
-        //     .then(()=> navigate("/"))
-        navigate("/")
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getCookie('jwt')}`
+                    },
+            })
+            .then(res=>res)
+            .then((res)=>console.log(1,res))
+            .then(()=> document.cookie = ``)
+            .then(()=> {setLoggedIn(false);navigate("/")})
+  
+        
         }
 
 
     React.useEffect(()=>{
 
         
-            // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/checklogin`, {
-            // method: "POST",
+            fetch(`https://note-task-backend.onrender.com/user/checklogin`, {
+            method: "POST",
             
-            // headers: {
-            //     Accept: "application/json, text/plain, */*",
-            //     "Content-Type": "application/json",
-            //     Authorization: `Bearer ${getCookie('jwt')}`
-            //         },
-            // })
-            // .then((res)=>res)
-            // .then(res => {
-            //     if(res.error){
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getCookie('jwt')}`
+                    },
+            })
+            .then((res)=>res)
+            .then(res => {
+                if(res.error){
                    
-            //         throw new Error("Couldn't login")
-            //     };
-            //     console.log(res)
-            //     console.log(document.cookie)
-            // })
-            // .catch((e)=> alert(e))
-        
-            
-                // alert("Please login")
+                    throw new Error("Couldn't login")
+                };
+                console.log(7,res)
+                console.log(7,res.body)
+                setLoggedIn(true)
+                console.log(document.cookie)
+            })
+            .catch((e)=> alert(e))
+
+
+               
                  
 
     },[])
@@ -210,6 +214,8 @@ function Layout({children}) {
             </div>
 
             <FilterModal open={open} handleClose={handleClose}/>
+
+            
                 
             
             

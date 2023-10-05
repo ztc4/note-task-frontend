@@ -8,7 +8,7 @@ import sortNotes from "../functions/filter";
 function Notes() {
   
     
-    const {notes,setNotes,groupNotes,setGroupNotes,filter} = React.useContext(NoteContext)
+    const {notes,setNotes,groupNotes,setGroupNotes,filter,loggedIn} = React.useContext(NoteContext)
 
     let noteGroup = [];
     switch(filter.noteType){
@@ -25,41 +25,44 @@ function Notes() {
         filter.completion,filter.alphabetical,
         filter.sortBy,filter.work,filter.todos, filter.reminder,filter.money)
 }
+    React.useEffect(()=>{
+
+    },[])
 
        
 
       
     //ORIGINAL FETCH TO BACKEND
-        // function deleteTask(id){
-        //     console.log("deleting task")
-        //     fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/tasks/delete`,{
-        //         method: "DELETE",
+        function deleteTask(id){
+            console.log("deleting task")
+            fetch(`https://note-task-backend.onrender.com/tasks/delete`,{
+                method: "DELETE",
             
-        //         headers: {
-        //             Accept: "application/json, text/plain, */*",
-        //             "Content-Type": "application/json",
-        //             Authorization: `Bearer ${getCookie('jwt')}`
-        //         },
-        //         body: JSON.stringify({_id:id}),
-        //         })
-        //         .then(deleteNoteOutOfState(id))
-        //         .catch()
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie('jwt')}`
+                },
+                body: JSON.stringify({_id:id}),
+                })
+                .then(deleteNoteOutOfState(id))
+                .catch()
                 
-        // }
-        // function deleteGroupTask(id){
-        //     fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/delete`,{
-        //         method: "DELETE",
+        }
+        function deleteGroupTask(id){
+            fetch(`https://note-task-backend.onrender.com/group/delete`,{
+                method: "DELETE",
             
-        //         headers: {
-        //             Accept: "application/json, text/plain, */*",
-        //             "Content-Type": "application/json",
-        //             Authorization: `Bearer ${getCookie('jwt')}`
-        //         },
-        //         body: JSON.stringify({_id: id, completion: true}),
-        //         }).then(
-        //             deleteGroupNoteOutOfState(id)
-        //         )
-        // }
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie('jwt')}`
+                },
+                body: JSON.stringify({_id: id, completion: true}),
+                }).then(
+                    deleteGroupNoteOutOfState(id)
+                )
+        }
 
     function deleteNoteOutOfState(id){
        
@@ -85,7 +88,7 @@ function Notes() {
                         <Grid item xs={12} sm={6} margin={1} md={4} key={note.title}>
                             
                             
-                            <NoteCard note={note} deleteTask={note.hasOwnProperty("owner") ? deleteNoteOutOfState : deleteGroupNoteOutOfState} group={false}/>
+                            <NoteCard note={note} deleteTask={note.hasOwnProperty("owner") ? deleteTask : deleteGroupTask} group={false}/>
                             
                             
                         </Grid>

@@ -3,6 +3,7 @@ import testSvg from "../png/logo-no-background.png"
 import { Cloud, Filter, Group, Login, Sort, Timeline, Translate } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import homepic from "../png/home picture.jpg"
+import React from "react";
 function LandingPage() {
     const navigate = useNavigate();
     const links={
@@ -32,6 +33,9 @@ function LandingPage() {
             description:""
         },
     ]
+    React.useEffect(()=>{
+        alert("Login will be extremely slow due to current hosting of backend!")
+    },[])
 
     return ( 
         <Box sx={{width:"100vw", overflow:"hidden"}}>
@@ -44,7 +48,7 @@ function LandingPage() {
 
                         <ButtonGroup sx={{ml:"auto"}}>
                             <Button variant="text" onClick={()=> navigate(links.login)}>Log In</Button>
-                            <Button variant="outlined" onClick={()=> navigate(links.signup)}>Sign Up</Button>    
+                            <Button variant="outlined" onClick={()=> navigate(links.login)}>Sign Up</Button>    
                         </ButtonGroup>
                     </Toolbar>
                 </Container>
@@ -68,7 +72,7 @@ function LandingPage() {
                     All your daily notes put into cloud, and allowed access at anytime, anywhere on any device
                 </Typography>
                 <Box textAlign={"center"} mt={3}>
-                    <Button variant="contained" sx={{mx:"auto"}} onClick={()=> navigate(links.signup)}>Sign Up now</Button>
+                    <Button variant="contained" sx={{mx:"auto"}} onClick={()=> navigate(links.login)}>Sign Up now</Button>
                 </Box>
 
                <img src={homepic} alt="landing page pic" className={"landingPic"}/>

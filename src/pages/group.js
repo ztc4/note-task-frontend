@@ -36,19 +36,19 @@ function Group() {
 
     // Leave, Join or Create Group
          async function LeaveGroup(current){
-        //     console.log("Leave Group")
-        //     fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/groups/leave`,{
-        //         method: "DELETE",
+            console.log("Leave Group")
+            fetch(`https://note-task-backend.onrender.com/groups/leave`,{
+                method: "DELETE",
             
-        //         headers: {
-        //             Accept: "application/json, text/plain, */*",
-        //             "Content-Type": "application/json",
-        //             Authorization: `Bearer ${getCookie('jwt')}`
-        //         },
-        //         body: JSON.stringify({_id: current._id}),
-        //         })
-        //         .then(setGroup(groups=> groups.filter( current._id === groups._id)))
-        setGroup(groups=> groups.filter( current._id === groups._id))
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie('jwt')}`
+                },
+                body: JSON.stringify({_id: current._id}),
+                })
+                .then(setGroup(groups=> groups.filter( current._id === groups._id)))
+        
 
          }
 
@@ -59,19 +59,19 @@ function Group() {
         async function handleAdd(event){
             event.preventDefault()
 
-        // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/join`, {
-        //     method: "POST",
-            
-        //     headers: {
-        //         Accept: "application/json, text/plain, */*",
-        //         "Content-Type": "application/json",
-        //         Authorization: `Bearer ${getCookie('jwt')}`
-        //     },
-        //     body: JSON.stringify({_id:join.groupId, password: join.groupId}),
-        //     })
-        //     .then(res => {console.log(res); return res})
-        //     .then( res=>{return res.json()})
-        // {_id:join.groupId, password: join.groupId}
+            fetch(`https://note-task-backend.onrender.com/group/join`, {
+                method: "POST",
+                
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie('jwt')}`
+                },
+                body: JSON.stringify({_id:join.groupId, password: join.groupId}),
+                })
+                .then(res => {console.log(res); return res})
+                .then( res=>{return res.json()})
+      
 
 
 
@@ -80,28 +80,28 @@ function Group() {
 
         async function handleSubmit(event){
             event.preventDefault()
-        //     fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/create`, {
-        //         method: "POST",
+            fetch(`https://note-task-backend.onrender.com/group/create`, {
+                method: "POST",
                 
-        //         headers: {
-        //             Accept: "application/json, text/plain, */*",
-        //             "Content-Type": "application/json",
-        //             Authorization: `Bearer ${getCookie('jwt')}`
-        //         },
-        //         body: JSON.stringify({name: createGroup.groupName, password: createGroup.groupPassword}),
-        //         })
-        //         .then(res =>{
-        //             if(res.ok === false){
-        //                 throw new Error(res.error)
-        //             }
-        //             return res.json()
-        //         })
-        //         .then(res => setGroup(current=> ([
-        //             ...current,
-        //             res
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie('jwt')}`
+                },
+                body: JSON.stringify({name: createGroup.groupName, password: createGroup.groupPassword}),
+                })
+                .then(res =>{
+                    if(res.ok === false){
+                        throw new Error(res.error)
+                    }
+                    return res.json()
+                })
+                .then(res => setGroup(current=> ([
+                    ...current,
+                    res
 
-        //         ])))
-        setGroup(current=> ([...current,createGroup.groupName]))
+                ])))
+
         }
 
 

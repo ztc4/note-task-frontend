@@ -37,6 +37,7 @@ const theme2 = createTheme({
   }
 
 })
+
 function App() {
 
 
@@ -67,6 +68,7 @@ function App() {
   const [notes,setNotes] = React.useState([])
   const [groups,setGroup] = React.useState([])
   const [groupNotes, setGroupNotes] = React.useState([])
+  const [loggedIn,setLoggedIn] = React.useState(false)
   console.log(groupNotes)
   console.log(notes)
 
@@ -84,79 +86,82 @@ const[createGroup,setCreateGroup] = React.useState({
 
 const [category,setCategory]= React.useState("todos")
 React.useEffect(()=>{
-  try{
-  
-  // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/tasks/get`,{
-  //       method: "GET", 
-  //       headers:{
-  //           Authorization: `Bearer ${getCookie("jwt")}`
-  //       }
-  //   }).then(res => res.json())
-  //   .then((res)=> {
-  //       if(res.error){
-  //           console.log(res.error)
-  //          throw new Response("Couldn't get task")
-  //       }
-  //       console.log(res)
-  //       return setNotes(res)
-  //   })
-  
-  }catch(e){
-    console.log("couldnt get data")
 
-    }
+     if(loggedIn === true) {
+        try{
+      console.log(loggedIn)
+      fetch(`https://note-task-backend.onrender.com/tasks/get`,{
+            method: "GET", 
+            headers:{
+                Authorization: `Bearer ${getCookie("jwt")}`
+            }
+        }).then(res => res.json())
+        .then((res)=> {
+            if(res.error){
+                console.log(res.error)
+              throw new Response("Couldn't get task")
+            }
+            console.log(res)
+            return setNotes(res)
+        })
+      
+      }catch(e){
+        console.log("couldnt get data")
 
-    try{
-      // fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/get`, {
-      //       method: "GET",
-            
-      //       headers: {
-      //           Accept: "application/json, text/plain, */*",
-      //           "Content-Type": "application/json",
-      //           Authorization: `Bearer ${getCookie('jwt')}`
-      //       },
-      //       })
-      //       .then(res => res.json())
-      //       .then(res => setGroup(res))
-      //       console.table(groups)
-      //       console.log("the groups")
-            
+        }
 
-    }
-    catch(e){
-      console.log("couldnt get data")
+        try{
+          fetch(`https://note-task-backend.onrender.com/group/get`, {
+                method: "GET",
+                
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getCookie('jwt')}`
+                },
+                })
+                .then(res => res.json())
+                .then(res => setGroup(res))
+                console.table(groups)
+                console.log("the groups")
+                
 
-    }
-    try{
-    //   fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/group/getTask`,{
-    //     method: "GET", 
-    //     headers:{
-    //         Authorization: `Bearer ${getCookie('jwt')}`
-    //     }
-    // })
-    // .then(res => res.json())
-    // .then((res)=> {
-    //     if(res.error){
-    //         console.log(res.error)
-    //        throw new Response("Couldn't get task")
-    //     }
-    //     return res
-    // }).then(result=> setGroupNotes(result))
+        }
+        catch(e){
+          console.log("couldnt get data")
 
-    }catch(e){
-      console.log("couldnt get group data")
-     
+        }
+        try{
+          fetch(`https://note-task-backend.onrender.com/group/getTask`,{
+            method: "GET", 
+            headers:{
+                Authorization: `Bearer ${getCookie('jwt')}`
+            }
+        })
+        .then(res => res.json())
+        .then((res)=> {
+            if(res.error){
+                console.log(res.error)
+              throw new Response("Couldn't get task")
+            }
+            return res
+        }).then(result=> setGroupNotes(result))
+
+        }catch(e){
+          console.log("couldnt get group data")
+        
+        
+        }
+  }
     
-    }
-    
 
-},[])
+},[loggedIn])
 
   return (
 
   
     <BrowserRouter>
-    <NoteContext.Provider value={{newNote,setNewNote,groupNotes,setGroupNotes, category,setCategory, notes, setNotes, groups,setGroup, createGroup, setCreateGroup,filter,setFilter}}>
+    <NoteContext.Provider value={{newNote,setNewNote,groupNotes,setGroupNotes, category,setCategory, notes, setNotes, groups,setGroup, createGroup, setCreateGroup,filter,setFilter, setLoggedIn, loggedIn}}>
         
           <Routes>
               <Route
@@ -175,6 +180,7 @@ React.useEffect(()=>{
               <Route path="/signup" element={<ThemeProvider theme={theme2}><Signup/></ThemeProvider>} />
               
             </Routes>
+
 
 
           

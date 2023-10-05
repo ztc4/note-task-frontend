@@ -16,7 +16,7 @@ function Signup() {
 
     //Demo renavigate to notes
     React.useEffect(()=>{
-        navigate("/notes")
+        // navigate("/notes")
     },[])
 
     //event handlers
@@ -31,7 +31,7 @@ function Signup() {
 
     function submit(e){
         e.preventDefault()
-        fetch(`https://note-backend-zachary-9a350c884dc1.herokuapp.com/user/signup`, {
+        fetch(`https://note-task-backend.onrender.com/user/signup`, {
         method: "POST",
         
         headers: {
@@ -46,6 +46,11 @@ function Signup() {
         .catch(setError(true))
         .then(()=> navigate("/notes"))
     }
+
+    React.useState(()=>{
+     navigate("login")
+    },
+    [])
 
 
     //Creating of the many input components

@@ -46,7 +46,7 @@ function NoteCard({note, deleteTask, group}) {
                     <ButtonGroup size="small">
 
                     
-                   <Button
+                   {/* <Button
                    color="secondary"
                    variant="outlined"
                    endIcon={
@@ -56,7 +56,7 @@ function NoteCard({note, deleteTask, group}) {
                    <Button
                    variant="contained"
                    color="success"
-                   children={"Complete"}/>
+                   children={"Complete"}/> */}
                    </ButtonGroup>
 
                 </CardActions>
