@@ -31,7 +31,7 @@ function Signup() {
 
     function submit(e){
         e.preventDefault()
-        fetch(`https://note-task-backend.onrender.com/user/signup`, {
+        fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/user/signup`, {
         method: "POST",
         
         headers: {

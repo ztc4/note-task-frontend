@@ -37,7 +37,7 @@ function Group() {
     // Leave, Join or Create Group
          async function LeaveGroup(current){
             console.log("Leave Group")
-            fetch(`https://note-task-backend.onrender.com/groups/leave`,{
+            fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/groups/leave`,{
                 method: "DELETE",
             
                 headers: {
@@ -59,7 +59,7 @@ function Group() {
         async function handleAdd(event){
             event.preventDefault()
 
-            fetch(`https://note-task-backend.onrender.com/group/join`, {
+            fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/group/join`, {
                 method: "POST",
                 
                 headers: {
@@ -80,7 +80,7 @@ function Group() {
 
         async function handleSubmit(event){
             event.preventDefault()
-            fetch(`https://note-task-backend.onrender.com/group/create`, {
+            fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/group/create`, {
                 method: "POST",
                 
                 headers: {

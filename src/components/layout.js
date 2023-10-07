@@ -70,7 +70,7 @@ function Layout({children}) {
 
     
     function logout(){
-        fetch(`https://note-task-backend.onrender.com/user/logout`, {
+        fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/user/logout`, {
             method: "POST",
             
             headers: {
@@ -91,7 +91,7 @@ function Layout({children}) {
     React.useEffect(()=>{
 
         
-            fetch(`https://note-task-backend.onrender.com/user/checklogin`, {
+            fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/user/checklogin`, {
             method: "POST",
             
             headers: {

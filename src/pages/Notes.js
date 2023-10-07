@@ -35,7 +35,7 @@ function Notes() {
     //ORIGINAL FETCH TO BACKEND
         function deleteTask(id){
             console.log("deleting task")
-            fetch(`https://note-task-backend.onrender.com/tasks/delete`,{
+            fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/tasks/delete`,{
                 method: "DELETE",
             
                 headers: {
@@ -50,7 +50,7 @@ function Notes() {
                 
         }
         function deleteGroupTask(id){
-            fetch(`https://note-task-backend.onrender.com/group/delete`,{
+            fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/group/delete`,{
                 method: "DELETE",
             
                 headers: {

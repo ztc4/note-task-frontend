@@ -90,7 +90,7 @@ React.useEffect(()=>{
      if(loggedIn === true) {
         try{
       console.log(loggedIn)
-      fetch(`https://note-task-backend.onrender.com/tasks/get`,{
+      fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/tasks/get`,{
             method: "GET", 
             headers:{
                 Authorization: `Bearer ${getCookie("jwt")}`
@@ -111,7 +111,7 @@ React.useEffect(()=>{
         }
 
         try{
-          fetch(`https://note-task-backend.onrender.com/group/get`, {
+          fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/group/get`, {
                 method: "GET",
                 
                 headers: {
@@ -132,7 +132,7 @@ React.useEffect(()=>{
 
         }
         try{
-          fetch(`https://note-task-backend.onrender.com/group/getTask`,{
+          fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/group/getTask`,{
             method: "GET", 
             headers:{
                 Authorization: `Bearer ${getCookie('jwt')}`

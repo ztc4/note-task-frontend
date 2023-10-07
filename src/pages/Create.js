@@ -49,7 +49,7 @@ function Create() {
     async function handleSubmit(event){
         event.preventDefault()
            try{     console.log("submitting task")
-            fetch(`https://note-task-backend.onrender.com/tasks/create`, {
+            fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/tasks/create`, {
                 method: "POST",
                 
                 headers: {
@@ -97,7 +97,7 @@ function Create() {
               if(newNote.group === ""){
                 throw new Error("No group selected")
               }
-                fetch(`https://note-task-backend.onrender.com/group/createTask`,{
+                fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/group/createTask`,{
                 method: "POST",
                 headers:{
                     Accept: "application/json, text/plain, */*",

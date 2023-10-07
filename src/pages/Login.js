@@ -32,7 +32,7 @@ function Login() {
 
         e.preventDefault()
         
-       fetch(`https://note-task-backend.onrender.com/user/login`, {
+       fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/user/login`, {
         method: "POST",
         
         headers: {
