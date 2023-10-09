@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import testSvg from "../png/logo-no-background.png"
 import { useNavigate } from "react-router";
 import { NoteContext } from "../Context/NoteContext";
+import LoadingDot from "../components/loadingDot";
 
 
 function Login() {
@@ -13,6 +14,7 @@ function Login() {
     const navigate = useNavigate()
     const [form, setForm]= React.useState({email:"randomreview@gmail.com", password:"random123"})
     const [error,setError] = React.useState(false)
+    const [tryingLogin, setTryingLogin]= React.useState(false)
     
     
     //events
@@ -31,6 +33,7 @@ function Login() {
       
 
         e.preventDefault()
+        setTryingLogin(true)
         
        fetch(`https://hu6xuodi40.execute-api.us-east-1.amazonaws.com/dev/user/login`, {
         method: "POST",
@@ -55,6 +58,7 @@ function Login() {
         })
         .then(()=> navigate("/notes"))
         .catch(err=> {
+            setTryingLogin(false)
         
             alert(err)
             // setError(err)
@@ -127,9 +131,12 @@ function Login() {
                     variant="contained"
                     fillWidth
                     sx={window.innerWidth> 500 ? {width:400}:{width:"100%"}}
+                    disabled={tryingLogin}
+                    className="h-24"
                     
                    >
-                    Log In
+                    Login
+                    
                 </Button>
                 </Box>
                 </form>

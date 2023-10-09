@@ -59,11 +59,8 @@ function App() {
   })
 
 
-  function alerttext(text){
-    alert(text)
-  }
-  
 
+  
   //App states for other data
   const [notes,setNotes] = React.useState([])
   const [groups,setGroup] = React.useState([])

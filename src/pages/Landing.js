@@ -33,9 +33,7 @@ function LandingPage() {
             description:""
         },
     ]
-    React.useEffect(()=>{
-        alert("Login will be extremely slow due to current hosting of backend!")
-    },[])
+
 
     return ( 
         <Box sx={{width:"100vw", overflow:"hidden"}}>
