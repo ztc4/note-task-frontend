@@ -1,6 +1,6 @@
 import { Box, Button, Container, IconButton, TextField, Typography } from "@mui/material";
 import React from "react";
-import testSvg from "../png/logo-no-background.png"
+
 import {  ArrowRightAltOutlined} from "@mui/icons-material";
 import { useNavigate } from "react-router";
 
@@ -121,8 +121,8 @@ function Signup() {
         
             <Container  sx={{display:"flex", flexDirection:"column",pt:20}} >
                 
-            <Box textAlign={"center"}>
-                <img src={testSvg} color="white" alt="svg" height={100}/>
+            <Box sx={{mx:"auto"}}>
+                <img src="/logo-no-background.svg"  color="white" alt="svg" height={100} width={100}/>
 
             </Box>
             

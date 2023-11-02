@@ -1,4 +1,6 @@
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .App {
   text-align: center;
@@ -14,6 +16,50 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+/* Martel */
+
+@font-face {
+  font-family: "martel";
+  src: url("../public/MartelSans-Regular.ttf");
+}
+@font-face {
+  font-family: "martel-semibold";
+  src: url("../public/MartelSans-SemiBold.ttf");
+}
+@font-face {
+  font-family: "martel-bold";
+  src: url("../public/MartelSans-Bold.ttf");
+}
+@font-face {
+  font-family: "martel-extrabold";
+  src: url("../public/MartelSans-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "martel-black";
+  src: url("../public/MartelSans-Black.ttf");
+}
+
+
+
+/* Haskoy */
+@font-face {
+  font-family: "haskoy";
+  src: url("../public/Haskoy-Regular.ttf");
+}
+@font-face {
+  font-family: "haskoy-bold";
+  src: url("../public/Haskoy-Bold.ttf");
+}
+@font-face {
+  font-family: "haskoy-light";
+  src: url("../public/Haskoy-Light.ttf");
+}
+@font-face {
+  font-family: "haskoy-semibold";
+  src: url("../public/Haskoy-SemiBold.ttf");
+}
+
+
 
 .App-header {
   background-color: #282c34;

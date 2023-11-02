@@ -1,6 +1,6 @@
 import { Alert, Box, Button, Container, TextField, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import testSvg from "../png/logo-no-background.png"
+
 import { useNavigate } from "react-router";
 import { NoteContext } from "../Context/NoteContext";
 import LoadingDot from "../components/loadingDot";
@@ -74,8 +74,8 @@ function Login() {
         
             <Container  sx={{display:"flex", flexDirection:"column",pt:15}} >
                 
-            <Box textAlign={"center"}>
-                <img src={testSvg} color="white" alt="svg" height={100}/>
+            <Box sx={{mx:"auto"}}>
+                <img src="/logo-no-background.svg" className="white" alt="svg" height={100} width={100}/>
 
             </Box>
             
@@ -132,7 +132,7 @@ function Login() {
                     fillWidth
                     sx={window.innerWidth> 500 ? {width:400}:{width:"100%"}}
                     disabled={tryingLogin}
-                    className="h-24"
+                    className="h-12"
                     
                    >
                     Login
